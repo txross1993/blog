@@ -1,9 +1,5 @@
 ---
 title: How to Use Text Templates in Golang with Complext Data Inputs
-toc: true
-toc_label: "In this page"
-toc_icon: "fas fa-stopwatch-20"
-toc_sticky: true
 ---
 
 Have you ever used Go's templating methods but got stuck when your input data structure contained something less trivial than top-level fields? If so, this blog post is for you! I will walk through simple examples using a struct with built-in property types. Then I will show you pipelining functions and how to deal with nilable data. 
