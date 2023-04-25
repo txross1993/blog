@@ -2,7 +2,7 @@
 # https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll#adding-a-theme
 theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: mint
-
+# https://github.com/mmistakes/minimal-mistakes
 remote_theme: mmistakes/minimal-mistakes@4.24.0
 plugins:
   - jekyll-remote-theme 
@@ -34,6 +34,7 @@ title: Thea's Tech Time Blog
 name: Thea Ross
 description: A place where all my technical interests go, where I can write about it and help clarify concepts for readers.
 repository: "txross1993/blog"
+repository_url: https://github.com/txross1993/blog
 #teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 #logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 
