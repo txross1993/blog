@@ -60,6 +60,7 @@ footer:
 include:
   - .htaccess
   - _pages
+  - _data
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -100,6 +101,6 @@ defaults:
       toc_label: "In this page"
       toc_icon: "fas fa-stopwatch-20"
       toc_sticky: true  
-
-# TODO Post sidebar
-# https://mademistakes.com/mastering-jekyll/how-to-link/#jekyll-relative-links-plugin
+      excerpt_separator: <!--more-->
+      sidebar:
+        nav: "main"
