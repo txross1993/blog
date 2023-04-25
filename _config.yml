@@ -32,7 +32,7 @@ kramdown:
   syntax_highlighter: rouge
 
 local: "en-US"
-title: Thea's Tech Time Blog
+title: Thea's Tech Time
 name: Thea Ross
 description: A place where all my technical interests go, where I can write about it and help clarify concepts for readers.
 repository: "txross1993/blog"
@@ -60,6 +60,7 @@ footer:
 include:
   - .htaccess
   - _pages
+  - _data
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -96,6 +97,10 @@ defaults:
       comments: # true
       share: true
       related: true
-
-# TODO Post sidebar
-# https://mademistakes.com/mastering-jekyll/how-to-link/#jekyll-relative-links-plugin
+      toc: true
+      toc_label: "In this page"
+      toc_icon: "fas fa-stopwatch-20"
+      toc_sticky: true  
+      excerpt_separator: <!--more-->
+      sidebar:
+        nav: "main"
