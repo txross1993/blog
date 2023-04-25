@@ -32,7 +32,7 @@ kramdown:
   syntax_highlighter: rouge
 
 local: "en-US"
-title: Thea's Tech Time Blog
+title: Thea's Tech Time
 name: Thea Ross
 description: A place where all my technical interests go, where I can write about it and help clarify concepts for readers.
 repository: "txross1993/blog"

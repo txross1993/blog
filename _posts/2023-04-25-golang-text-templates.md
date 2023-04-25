@@ -1,8 +1,14 @@
-# How to Use Text Templates in Golang with Complext Data Inputs
+---
+title: How to Use Text Templates in Golang with Complext Data Inputs
+toc: true
+toc_label: "In this page"
+toc_icon: "fas fa-stopwatch-20"
+toc_sticky: true
+---
 
 Have you ever used Go's templating methods but got stuck when your input data structure contained something less trivial than top-level fields? If so, this blog post is for you! I will walk through simple examples using a struct with built-in property types. Then I will show you pipelining functions and how to deal with nilable data. 
 
-## Getting Started
+# Getting Started: A Simple Greeting
 If you're not familiar, Golang's `text/tempalte` [package](https://pkg.go.dev/text/template) provides ways to format text data using objects declared in a program. The simplest use case is accessing data from a simple structure containing top level fields. Let's look at an example, where `Person` has a `FirstName`, `LastName`, and a `Birthday` as string properties. 
 
 ```golang
@@ -33,6 +39,8 @@ var Greeting = var Greeting = `Happy Birthday, {{ .FirstName }} {{ .LastName }}!
 You were born on {{ .Birthday }}.`
 ```
 {% endraw %}
+
+## Syntax notes
 
 The first thing you'll notice in the greeting string may be the curly brace syntax. The {% raw %}`{{` opening and `}}`{% endraw %} closing braces are called **delimeters** and signal to the text template library where it should replace text with that of your input data. You may change these delimeters but this blog post will not go into detail about that. 
 
@@ -76,13 +84,13 @@ Happy Birthday, Daniel Pulaski!
 You were born on 07-09-1989.
 ```
 
-## Custom Functions
+# Getting Fancy: Custom Functions
 
 The greeting example is not very personable, since we simply state the person's name and birthday. Let's make it more personal by calculating the age from the input birthday string by providing our own custom function to the templater. 
 
 There are two ways you can do this: by providing a method on the struct `Person` or by defining a function that will take arguments and return a single value or return a value and an error. 
 
-As a function:
+## Map of Template Functions with Args
 {% raw %}
 ```golang
 var templateFns = map[string]any{
@@ -111,7 +119,9 @@ You are {{ age .Birthday }} years old today!`
 ```
 {% endraw %}
 
-As a method on Person:
+The `map[string]any` is the type of the arg that can be provided to your template before you call `Parse()`. The `string` is the name of the function, `age` is used inside if {% raw %}`{{}}`{%endraw%}, as you can see referenced in the template string as {%raw%}`{{ age .Birthday }}`{%endraw%}
+
+## Function as a Method on a Struct
 {% raw %}
 ```golang
 func (p Person) Age() int {
@@ -127,7 +137,10 @@ You are {{ .Age }} years old today!`
 ```
 {% endraw %}
 
-## Dealing with Complex Data
+Like properties of a struct, methods defined on a struct may be used inside of the template function as well. They are referenced just like properties and must be exported (start with a capitalized letter) for them to be used in templating functions.
+That means if we defined the function {% highlight go %}`func (p Person) age() { ... }`{%endhighlight%} it would not be available in templating functions. Since `age` does not begin with a capitalized letter, that instructs the compiler that it is not an exported function.
+
+# Dealing with Complex Data
 
 Input data isn't always as simple as a struct with top level attributes that are built-in types. Often you'll have structs that have properties that are structs themselves, or even pointers to structs, slices, or maps. That means you also have the dreaded possibility of <span style="color:red">*NIL POINTER DEREFERENCE*!</span>
 
@@ -179,6 +192,7 @@ var templateStr = `All the key1 keys: [
 All the key1 keys: [ left1  right1 ]
 ```
 
+## Syntax Notes
 The `range` function will let us range over the `Tree`'s nodes and find all the `key1`.
 Some things to note:
   - Like the template function `"age"` we defined in the `map[string]any` above, the built-in `range` function uses the `function <assignment> arg` syntax.
@@ -191,6 +205,7 @@ What if you only wanted to find the first instance of `key1` and use that value?
   - {% raw %}`{{ with ... }} {{ else }} {{ end }}`{% endraw %}
   - {% raw %}`{{ range ... }} {{ continue }} {{ break }} {{ end }}`{% endraw %}
 
+## Pipeline Examples
 Let's see some examples:
 
 1. I want to print all the left node keys (prefixed with string `left`):
@@ -240,6 +255,7 @@ There is more that you can do with text templates, and if you'd like to explore 
 
 For now, I hope you've learned enough to create something to fit your needs. 
 
+# Source Code
 If you need more details see the code examples in the repo:
-  - [Simple Person Birthday example]({{ site.repository_url }}/_examples/template_simple.go)
-  - [Pipelined Tree example]({{ site.repository_url }}/_examples/template_pipeline.go)
+  - [Simple Person Birthday example]({{ site.repository_url }}/blob/master/_examples/go/template_simple.go)
+  - [Pipelined Tree example]({{ site.repository_url }}/blob/master/_examples/go/template_pipeline.go)
