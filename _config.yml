@@ -1,0 +1,98 @@
+
+# https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll#adding-a-theme
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin: mint
+
+remote_theme: mmistakes/minimal-mistakes@4.24.0
+plugins:
+  - jekyll-remote-theme 
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jekyll-include-cache
+
+whitelist:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jekyll-include-cache
+
+lsi: false
+safe: true
+incremental: false
+highlighter: rouge
+gist:
+  noscript: false
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
+
+local: "en-US"
+title: Thea's Tech Time Blog
+name: Thea Ross
+description: A place where all my technical interests go, where I can write about it and help clarify concepts for readers.
+repository: "txross1993/blog"
+#teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
+#logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
+
+author:
+  name: Thea Ross
+  avatar: assets/images/avatar.jpg
+  bio: Software Engineer and a nerd for the details in programming, infrastructure as code, cloud computing, and data.
+  location: USA
+  links:
+    - label: "Github"
+      icon: "fab fa-fw fa-github"
+      url: https://github.com/txross1993
+
+footer:
+  links:
+    - label: "Github"
+      icon: "fab fa-fw fa-github"
+      url: https://github.com/txross1993
+
+
+include:
+  - .htaccess
+  - _pages
+exclude:
+  - "*.sublime-project"
+  - "*.sublime-workspace"
+  - vendor
+  - .asset-cache
+  - .bundle
+  - .jekyll-assets-cache
+  - .sass-cache
+  - assets/js/plugins
+  - assets/js/_main.js
+  - assets/js/vendor
+  - CHANGELOG
+  - config
+  - Gemfile
+  - LICENSE
+  - log
+  - README
+  - tmp
+
+keep_files:
+  - .git
+
+paginate: 3
+
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: # true
+      share: true
+      related: true
+
+# TODO Post sidebar
+# https://mademistakes.com/mastering-jekyll/how-to-link/#jekyll-relative-links-plugin
